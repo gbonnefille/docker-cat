@@ -29,8 +29,7 @@ RUN wget --quiet -P /opt/sonarqube/extensions/plugins/ \
     #https://github.com/stefanrinderle/sonar-softvis3d-plugin/releases/download/sonar-softVis3D-plugin-0.3.5/sonar-softVis3D-plugin-0.3.5.jar \
     https://sonarsource.bintray.com/Distribution/sonar-typescript-plugin/sonar-typescript-plugin-1.1.0.1079.jar \
     https://sonarsource.bintray.com/Distribution/sonar-web-plugin/sonar-web-plugin-2.5.0.476.jar \
-    https://sonarsource.bintray.com/Distribution/sonar-xml-plugin/sonar-xml-plugin-1.4.3.1027.jar \
-    && ls /opt/sonarqube/extensions/plugins
+    https://sonarsource.bintray.com/Distribution/sonar-xml-plugin/sonar-xml-plugin-1.4.3.1027.jar
 
 # CNES report installation
 RUN wget --quiet -P /opt/sonar/extensions/cnes/ \
@@ -61,8 +60,7 @@ RUN apt update && apt install -y python-setuptools \
     https://github.com/PyCQA/astroid/archive/astroid-1.4.9.tar.gz \
     https://github.com/PyCQA/pylint/archive/pylint-1.5.tar.gz \
     https://github.com/lequal/cnes-pylint-extension/archive/V1.0.tar.gz \
-    && find /tmp/python -maxdepth 1 -name \*.tar.gz -exec tar -xvzf {} -C /opt/python \; \
-    && ls /opt/python \
+    && find /tmp/python -maxdepth 1 -name \*.tar.gz -exec tar -xvzf {} -C /opt/python \;
     && cd /opt/python/colorama-0.3.3/ && python setup.py install \
     && cd /opt/python/python-lazy-object-proxy-1.2.1/ && python setup.py install \
     && cd /opt/python/python-six-1.9.0/ && python setup.py install \
@@ -103,10 +101,8 @@ RUN wget http://downloads.sourceforge.net/project/expat/expat/2.0.1/expat-2.0.1.
 #    && apt install -y cmake3    
 	
 # Make sonarqube owner of it's installation directories	
-RUN chown sonarqube:sonarqube -R /opt \
-    && ls -lrta /opt/ \
-    && chown sonarqube:sonarqube -R /home \
-    && ls -lrta /home/ \
+RUN chown sonarqube:sonarqube -R /opt
+    && chown sonarqube:sonarqube -R /home
     && chown sonarqube:sonarqube -R /tmp/conf
 
 # jq required for configure-cat script.	
