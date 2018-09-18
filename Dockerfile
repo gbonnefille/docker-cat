@@ -52,7 +52,7 @@ ENV PYTHONPATH $PYTHONPATH:/opt/python/cnes-pylint-extension-1.0/checkers/
 
 RUN apt update && apt install -y python-setuptools \
     && mkdir /opt/python && mkdir /tmp/python \
-    && wget -P /tmp/python \
+    && wget --quiet -P /tmp/python \
     https://github.com/tartley/colorama/archive/v0.3.3.tar.gz \
     https://github.com/ionelmc/python-lazy-object-proxy/archive/v1.2.1.tar.gz \
     https://github.com/CloudAutomationNTools/python-six/archive/1.9.0.tar.gz \
@@ -73,10 +73,10 @@ RUN apt update && apt install -y python-setuptools \
 ## CPPCheck, gcc, make, vera++
 RUN apt update && apt install -y cppcheck vera\+\+ gcc make
 ## Expat, rats
-RUN wget http://downloads.sourceforge.net/project/expat/expat/2.0.1/expat-2.0.1.tar.gz \
+RUN wget --quiet http://downloads.sourceforge.net/project/expat/expat/2.0.1/expat-2.0.1.tar.gz \
     && tar -xvzf expat-2.0.1.tar.gz \
     && cd expat-2.0.1 \
-    && wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/rough-auditing-tool-for-security/rats-2.4.tgz \
+    && wget --quiet https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/rough-auditing-tool-for-security/rats-2.4.tgz \
     && ./configure && make && make install \
     && tar -xzvf rats-2.4.tgz \
     && cd rats-2.4 \
