@@ -6,7 +6,7 @@ RUN mkdir /opt/sonar
 COPY ./conf /tmp/conf  
 
 # Download Sonarqubes plugins.
-RUN wget -P /opt/sonarqube/extensions/plugins/ \
+RUN wget --quiet -P /opt/sonarqube/extensions/plugins/ \
     https://github.com/lequal/sonar-cnes-scan-plugin/releases/download/v1.2.0/sonar-cnes-scan-plugin-1.2.jar \
     https://github.com/checkstyle/sonar-checkstyle/releases/download/3.7/checkstyle-sonar-plugin-3.7.jar \
     https://github.com/lequal/sonar-cnes-cxx-plugin/releases/download/v1.1.0/sonar-cnes-cxx-plugin-1.1.jar \
@@ -33,7 +33,7 @@ RUN wget -P /opt/sonarqube/extensions/plugins/ \
     && ls /opt/sonarqube/extensions/plugins
 
 # CNES report installation
-RUN wget -P /opt/sonar/extensions/cnes/ \
+RUN wget --quiet -P /opt/sonar/extensions/cnes/ \
     https://github.com/lequal/sonar-cnes-report/releases/download/v1.1.0/sonar-report-cnes.jar \
     https://github.com/lequal/sonar-cnes-report/releases/download/v1.1.0/issues-template.xlsx \
     https://github.com/lequal/sonar-cnes-report/releases/download/v1.1.0/code-analysis-template.docx
@@ -41,7 +41,7 @@ RUN wget -P /opt/sonar/extensions/cnes/ \
 # Sonar scanner installation
 RUN apt update && apt install -y unzip \
     && mkdir /tmp/scanners \
-    && wget -P /tmp/scanners \
+    && wget --quiet -P /tmp/scanners \
     https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip \
     && unzip /tmp/scanners/sonar-scanner-cli-3.0.3.778-linux.zip -d /opt/ \
     && mv /opt/sonar-scanner-3.0.3.778-linux /opt/sonar-scanner \ 
